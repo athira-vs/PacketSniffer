@@ -27,16 +27,16 @@ proto = sys.argv[4]
 
 #sniff function call it and pass every packet in byte format
 def logs(packet):
-	#packet.show() #SHow whole packet
-	print(f"SRC_MAC: {str(packet[0].src)} DEST_MAC: {str(packet[0].dst)}")
+    #packet.show() #SHow whole packet
+    print(f"SRC_MAC: {str(packet[0].src)} DEST_MAC: {str(packet[0].dst)}")
 
 
 if proto == "all":
-	sniff(iface = net_iface ,count = num_of_pkt, timeout = time_sec, prn=logs ) #sniffing packet
+    sniff(iface = net_iface ,count = num_of_pkt, timeout = time_sec, prn=logs ) #sniffing packet
 elif proto == "arp":
-        sniff(iface = net_iface, count = num_of_pkt,timeout = time_sec , prn = logs , filter = proto) #sniffing packet
+    sniff(iface = net_iface, count = num_of_pkt,timeout = time_sec , prn = logs , filter = proto) #sniffing packet
 elif proto == "icmp":
-	sniff(iface = net_iface, count = num_of_pkt,timeout = time_sec , prn = logs , filter = proto) #sniffing packet
+    sniff(iface = net_iface, count = num_of_pkt,timeout = time_sec , prn = logs , filter = proto) #sniffing packet
 else:
-	print("Wrong protocol")
+    print("Wrong protocol")
 
