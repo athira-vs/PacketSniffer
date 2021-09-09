@@ -1,6 +1,8 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 
 print("Use Sudo")
+print("Format: sudo python3 packet_sniffer.py interface_name packet_count time protocol(arp|icmp|all)")
+print("Example: sudo python3 packet_sniffer.py wlp3s0 20 20 all")
 
 #Packet sniffer script using scapy
 from datetime import datetime 
@@ -8,16 +10,20 @@ import sys
 import subprocess #Create another processs
 from scapy.all import *
 
-net_iface = input("Enter interface name: ")
+# Interface name
+net_iface = sys.argv[1]
 
 #promisceous mode transfer the interface data packets to cpu to processs and you capture from there
 subprocess.call(["ifconfig",net_iface,"promisc"]) #creating another process to run command
 
-num_of_pkt = int(input("Enter the packet count you want to capture"))
+# The packet count you want to capture
+num_of_pkt = int(sys.argv[2])
 
-time_sec =int(input("Enter the time how long(in sec) run to capture"))
+# Time how long(in sec) run to capture
+time_sec =int(sys.argv[3])
 
-proto = input("Enter the protocol(arp | icmp |all)")
+# Protocol(arp | icmp |all)
+proto = sys.argv[4]
 
 #sniff function call it and pass every packet in byte format
 def logs(packet):
